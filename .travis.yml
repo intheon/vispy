@@ -180,6 +180,7 @@ before_script:
 
 script:
     - cd ${SRC_DIR}
+    - python -c "from OpenGL.GL import glGetBufferParameteriv;glGetBufferParameteriv.finalise();print(glGetBufferParameteriv.cConverters[-1].outIndex)"
     - python -c "import vispy; print(vispy.sys_info())"
     - if [ "${TEST}" == "standard" ]; then
         make unit;

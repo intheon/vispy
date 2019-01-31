@@ -75,8 +75,9 @@ class AxisWidget(Widget):
             self._linked_view.scene.transform.changed.disconnect(
                 self._view_changed)
         self._linked_view = view
-        view.scene.transform.changed.connect(self._view_changed)
-        self._view_changed()
+        if view is not None:
+            view.scene.transform.changed.connect(self._view_changed)
+            self._view_changed()
         
     def _view_changed(self, event=None):
         """Linked view transform has changed; update ticks.
